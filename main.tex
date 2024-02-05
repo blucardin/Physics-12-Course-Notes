@@ -6,6 +6,8 @@
 \usepackage{amsmath} % provides many mathematical environments & tools
 \usepackage{amssymb} % provides many mathematical symbols
 
+\addtolength{\jot}{1em} % increase spacing between lines in align environment
+
 \usepackage{titling} % provides \thetitle, \theauthor, \thedate
 \usepackage[export]{adjustbox} % provides \includegraphics[valign=c]{...}
 \usepackage{wrapfig} % provides wrapfigure environment for figures with text wrapping
@@ -26,8 +28,7 @@
 
 \usepackage[makeindex]{imakeidx} % provides indexing
 \makeindex[columns=2, title=Index, intoc] % set up the index
-
-\newcommand{\boldindex}[1]{\textbf{#1}\index{#1}} % a new command that bolds text and adds it to the index
+\newcommand{\boldindex}[1]{\noindent\textbf{#1}\index{#1}} % a new command that bolds text and adds it to the index
 
 \usepackage{draculatheme} % provides a dark mode for the document
 % remember to change the \hypersetup colors if using this package
@@ -78,9 +79,211 @@ This document is a review of the \name\ course. I had some time on my hands and 
 \pagebreak
 
 \section{Dynamics}
+\subsection{Vectors and Scalars}
+\boldindex{Scalars} are quantities that have magnitude only.
+
+\noindent \boldindex{Vectors} are quantities that have both magnitude and direction. 
+
+Scalars are represented by regular letters, while vectors are represented by letters with an arrow on top.
 
 \subsection{Kinematics}
-\boldindex{Kinematics} is the study of motion without considering the forces that cause the motion. It is the study of the motion of objects and their spatial and temporal properties such as position, velocity, and acceleration.
+
+\boldindex{Distance} is the total length of the path traveled by an object. The symbol for distance is $d$.
+
+\boldindex{Position} is the location of an object in space. We measure position as the distance and direction of an object from a reference point. The symbol for position is $\vec{d}$.
+
+\boldindex{Displacement} is the change in position of an object. The symbol for displacement is $\Delta\vec{d}$.
+
+For one-dimensional motion, displacement is given by the equation: 
+\begin{equation}
+    \Delta\vec{d} = \vec{d}_2 - \vec{d}_1
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $\vec{d}_2$ is the final position
+    \item $\vec{d}_1$ is the initial position
+\end{itemize}
+
+It is important to note that displacement is the change in position, and therefore does not take into account the distance of the path taken to get from the initial to the final position.
+
+\boldindex{Average Speed} is the rate of change of distance. The symbol for average speed is $v_{av}$.
+
+Average speed is given by the equation:
+\begin{equation}
+    v_{av} = \frac{\Delta d}{\Delta t}
+\end{equation}
+
+\boldindex{Average Velocity} is the rate of change of displacement. The symbol for average velocity is $\vec{v}_{av}$.
+
+Average velocity is given by the equation:
+\begin{equation}
+    \vec{v}_{av} = \frac{\Delta \vec{d}}{\Delta t}
+\end{equation}
+
+\boldindex{Instantaneous Speed} is the speed of an object at a specific point in time. The symbol for instantaneous velocity is $v$.
+
+\boldindex{Instantaneous Velocity} is the velocity of an object at a specific point in time. The symbol for instantaneous velocity is $\vec{v}$.
+
+On a position-time graph, the slope of the secant line between two points is the average velocity. The slope of the tangent line at a point is the instantaneous velocity.
+
+The equation for the slope of a line is:
+\begin{equation}
+    m = \frac{rise}{run} = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}
+\end{equation}
+Where $m$ is the slope, and $(x_1, y_1)$ and $(x_2, y_2)$ are two points on the line.
+
+\boldindex{Acceleration} is the rate of change of velocity. The symbol for acceleration is $\vec{a}$.
+Acceleration is given by the equation:
+\begin{equation}
+    \vec{a} = \frac{\Delta \vec{v}}{\Delta t}
+\end{equation}
+
+As with velocity, acceleration can be either average or instantaneous. This time the average acceleration is given by the slope of the secant line on a velocity-time graph, and the instantaneous acceleration is given by the slope of the tangent line at a point.
+
+\subsection{The Equations of Motion} 
+The \boldindex{Equations of Motion} are a set of five equations that describe the motion of an object under constant acceleration. 
+
+Each equation relates the displacement, initial velocity, final velocity, acceleration, and time of an object, such that you can solve for any one of these variables given the other three.
+
+Using the equations of motion you can solve any kinematics problem involving constant acceleration.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Equation} & \textbf{Formula} & \textbf{Variables Present} & \textbf{Variables Absent} \\
+    \hline
+    1 & \(\Delta \vec{d} = \frac{1}{2}(\vec{v}_i + \vec{v}_f)\Delta t\) & \(\Delta \vec{d}, \vec{v}_i, \vec{v}_f, \Delta t\) & \(\vec{a}\) \\
+    \hline
+    2 & \(\vec{v}_f = \vec{v}_i + \vec{a}\Delta t\) & \(\vec{v}_f, \vec{v}_i, \vec{a}, \Delta t\) & \(\Delta \vec{d}\) \\
+    \hline
+    3 & \(\Delta \vec{d} = \vec{v}_i\Delta t + \frac{1}{2}\vec{a}\Delta t^2\) & \(\Delta \vec{d}, \vec{v}_i, \vec{a}, \Delta t\) & \(\vec{v}_f\) \\
+    \hline
+    4 & \(\vec{v}_f^{\,2} = \vec{v}_i^{\,2} + 2\vec{a}\Delta \vec{d}\) & \(\vec{v}_f, \vec{v}_i, \vec{a}, \Delta \vec{d}\) & \(\Delta t\) \\
+    \hline
+    5 & \(\Delta \vec{d} = \vec{v}_f\Delta t - \frac{1}{2}\vec{a}\Delta t^2\) & \(\Delta \vec{d}, \vec{v}_f, \vec{a}, \Delta t\) & \(\vec{v}_i\) \\
+    \hline
+    \end{tabular}
+    \caption{Equations of Motion}
+    \label{table:equations_of_motion}
+    \end{table}
+    
+
+\subsection{Deriving the Equations of Motion}
+
+
+\subsubsection{Equation 1}
+The first equation of motion can be derived graphically, or analytically. Here is the analytical derivation.
+
+Suppose an object is moving with an initial velocity $\vec{v}_i$, and an acceleration $\vec{a}$ over time $\Delta t$ reaching a final velocity $\vec{v}_f$. The average velocity of the object is given by:
+\begin{equation}
+    \vec{v}_{av} = \frac{\vec{v}_i + \vec{v}_f}{2}
+\end{equation}
+
+Recall the definition of average velocity:
+\begin{equation}
+    \vec{v_{av}} = \frac{\Delta \vec{d}}{\Delta t}
+\end{equation}
+
+Substituting our average velocity into the definition of average velocity and solving for $\Delta \vec{d}$ gives:
+\begin{align}
+    \frac{\Delta \vec{d}}{\Delta t} =  \frac{\vec{v}_i + \vec{v}_f}{2} \\
+    \Delta \vec{d} = \left(\frac{\vec{v}_i + \vec{v}_f}{2}\right)\Delta t
+\end{align}
+
+Therefore the first equation of motion is:
+\begin{equation}
+    \Delta \vec{d} = \frac{1}{2}(\vec{v}_i + \vec{v}_f)\Delta t
+\end{equation}
+
+\subsubsection{Equation 2}
+The second equation of motion is derived from the definition of acceleration. 
+\begin{align}
+    \vec{a} &= \frac{\Delta \vec{v}}{\Delta t}\\
+    \vec{a}\Delta t  &= \Delta \vec{v}\\
+    \vec{a}\Delta t &= \vec{v}_f - \vec{v}_i \\ 
+    \vec{v}_i + \vec{a}\Delta t &= \vec{v}_f 
+\end{align}
+
+Therefore the second equation of motion is:
+\begin{equation}
+    \vec{v}_f = \vec{v}_i + \vec{a}\Delta t
+\end{equation}
+
+\subsubsection{Equation 3}
+The third equation of motion is derived from the first and second equations of motion.
+
+Substituting the second equation of motion into the first equation of motion gives:
+\begin{align}
+    \vec{v}_f &= \vec{v}_i + \vec{a}\Delta t\\
+    \Delta \vec{d} &= \frac{1}{2}(\vec{v}_i + \vec{v}_f )\Delta t\\
+    \Delta \vec{d} &= \frac{1}{2}(\vec{v}_i + \vec{v}_i + \vec{a}\Delta t)\Delta t\\
+    \Delta \vec{d} &= \frac{1}{2}(2\vec{v}_i + \vec{a}\Delta t)\Delta t\\
+    \Delta \vec{d} &= (\vec{v}_i + \frac{1}{2}\vec{a}(\Delta t)) \Delta t \\
+    \Delta \vec{d} &= \vec{v}_i\Delta t + \frac{1}{2}\vec{a}(\Delta t)^2
+\end{align}
+
+Therefore the third equation of motion is:
+\begin{equation}
+    \Delta \vec{d} = \vec{v}_i\Delta t + \frac{1}{2}\vec{a}\Delta t^2
+\end{equation}
+
+\subsubsection{Equation 4}
+The fourth equation of motion is derived from the first and second equations of motion.
+
+We can first solve the second equation of motion for $\Delta t$:
+\begin{align}
+    \vec{v}_f &= \vec{v}_i + \vec{a}\Delta t\\
+    \vec{a}\Delta t &= \vec{v}_f - \vec{v}_i\\
+    \Delta t &= \frac{\vec{v}_f - \vec{v}_i}{\vec{a}}
+\end{align}
+
+Substituting this into the first equation of motion gives:
+
+\begin{align}
+    \Delta \vec{d} &= \frac{1}{2}(\vec{v}_i + \vec{v}_f)\Delta t\\
+    \Delta \vec{d} &= \frac{1}{2}(\vec{v}_i + \vec{v}_f)\left(\frac{\vec{v}_f - \vec{v}_i}{\vec{a}}\right)\\
+    \Delta \vec{d} &= \frac{1}{2}\left(\frac{(\vec{v}_i + \vec{v}_f)(\vec{v}_f - \vec{v}_i)}{\vec{a}}\right)\\
+    \Delta \vec{d} &= \frac{1}{2}\left(\frac{\vec{v}_f^{\,2} - \vec{v}_i^{\,2}}{\vec{a}}\right) \\ % rearrange for v_f^2
+    \Delta \vec{d} &= \frac{\vec{v}_f^{\,2} - \vec{v}_i^{\,2}}{2\vec{a}} \\
+    \Delta \vec{d} 2\vec{a} &= \vec{v}_f^{\,2} - \vec{v}_i^{\,2} \\
+    2\vec{a}\Delta \vec{d} + \vec{v}_i^{\,2} &= \vec{v}_f^{\,2}  
+\end{align}
+
+Therefore the fourth equation of motion is:
+\begin{equation}
+    \vec{v}_f^{\,2} = \vec{v}_i^{\,2} + 2\vec{a}\Delta \vec{d}
+\end{equation}
+
+
+\subsubsection{Equation 5}
+The fifth equation of motion is derived from the second and third equations of motion.
+
+We can first solve the second equation of motion for $\vec{v}_i$:
+\begin{align}
+    \vec{v}_f &= \vec{v}_i + \vec{a}\Delta t\\
+    \vec{v}_f - \vec{a}\Delta t &= \vec{v}_i \\ 
+    \vec{v}_i &= \vec{v}_f - \vec{a}\Delta t
+\end{align}
+
+Substituting this into the third equation of motion gives:
+
+\begin{align}
+    \Delta \vec{d} &= \vec{v}_i\Delta t + \frac{1}{2}\vec{a}\Delta t^2\\
+    \Delta \vec{d} &= (\vec{v}_f - \vec{a}\Delta t)\Delta t + \frac{1}{2}\vec{a}(\Delta t)^2\\
+    \Delta \vec{d} &= \vec{v}_f\Delta t - \vec{a}(\Delta t)^2 + \frac{1}{2}\vec{a}(\Delta t)^2\\
+    \Delta \vec{d} &= \vec{v}_f\Delta t - \frac{1}{2}\vec{a}(\Delta t)^2\\
+\end{align}
+
+Therefore the fifth equation of motion is:
+\begin{equation}
+    \Delta \vec{d} = \vec{v}_f\Delta t - \frac{1}{2}\vec{a}\Delta t^2
+\end{equation}
+
+
+
+
 
 
 
